@@ -1,0 +1,24 @@
+{
+  "testRunner": "jest",
+  "devices": {
+    "emulator": {
+      "type": "android.emulator",
+      "device": {
+        "avdName": "Pixel_5_API_33"
+      }
+    }
+  },
+  "apps": {
+    "android": {
+      "type": "android.apk",
+      "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
+      "build": "cd android && gradlew assemble assembleAndroidTest -DtestBuildType=debug && cd .."
+    }
+  },
+  "configurations": {
+    "android.emu": {
+      "device": "emulator",
+      "app": "android"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+App is ready. What's next?
+1. yarn add detox
+   yarn add eslint-plugin-detox --dev
+2. Go through the steps from: https://wix.github.io/Detox/docs/introduction/android
+3. 
