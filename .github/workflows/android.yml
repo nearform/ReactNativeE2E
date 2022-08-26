@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
         with:
           fetch-depth: 1
 
@@ -21,11 +21,15 @@ jobs:
       - name: Use specific Java version for sdkmanager to work
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
           java-version: '11'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
 
       - name: Download Android Emulator Image
         run: |
+          echo $ANDROID_SDK_ROOT
+          echo $ANDROID_HOME
           echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install "system-images;android-29;google_apis;x86"
           echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd --force --name emu --device "Nexus 5X" -k 'system-images;android-29;google_apis;x86'
           $ANDROID_HOME/emulator/emulator -list-avds
