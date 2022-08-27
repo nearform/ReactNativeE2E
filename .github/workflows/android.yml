@@ -29,6 +29,7 @@ jobs:
           echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "system-images;android-29;google_apis;x86"
           echo "no" | $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager create avd --force --name emu --device "Nexus 5X" -k 'system-images;android-29;google_apis;x86'
           $ANDROID_HOME/emulator/emulator -list-avds
+
       - name: Install node_modules
         run: |
           yarn install --frozen-lockfile
@@ -36,6 +37,7 @@ jobs:
       - name: Build for detox
         run: |
           yarn build-detox-android
+
       - name: Android Emulator
         timeout-minutes: 10
         continue-on-error: true
@@ -45,8 +47,9 @@ jobs:
           $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
           $ANDROID_HOME/platform-tools/adb devices
           echo "Emulator started"
+
       - name: Android Detox
-        run: yarn start & yarn test-detox-android
+        run: yarn android & yarn test-detox-android
 
       - name: Store Detox artifacts on test failure
         uses: actions/upload-artifact@v3
