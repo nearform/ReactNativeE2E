@@ -45,7 +45,7 @@ export default function App() {
           </Text>
           <Button
             onPress={async () => {
-              await delay(2000);
+              await delay(1000);
               setCdreds({ login: '', password: '', loggedIn: false });
             }}
             testID="log-out-button"
