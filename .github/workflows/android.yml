@@ -47,9 +47,10 @@ jobs:
           $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
           $ANDROID_HOME/platform-tools/adb devices
           echo "Emulator started"
+          yarn android
 
       - name: Android Detox
-        run: yarn android & yarn test-detox-android
+        run:  yarn test-detox-android
 
       - name: Store Detox artifacts on test failure
         uses: actions/upload-artifact@v3
