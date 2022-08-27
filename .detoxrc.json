@@ -11,7 +11,7 @@
     },
     "android.emu.release": {
       "type": "android.emulator",
-      "binaryPath": "android/app/build/outputs/apk/debug/app-release.apk",
+      "binaryPath": "android/app/build/outputs/apk/release/app-release.apk",
       "build": "cd android && chmod +x gradlew && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=debug && cd ..",
       "device": {
         "avdName": "Pixel_API_29_AOSP"
