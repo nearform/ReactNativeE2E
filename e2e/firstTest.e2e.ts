@@ -1,14 +1,6 @@
-const { expect, device, element, by, waitFor } = require('detox');
+import { expect, element, by, waitFor } from 'detox';
 
 describe('App', () => {
-  beforeAll(async () => {
-    await device.launchApp();
-  });
-
-  beforeEach(async () => {
-    await device.reloadReactNative();
-  });
-
   it('should have welcome screen', async () => {
     await expect(element(by.id('login-input'))).toBeVisible();
   });
