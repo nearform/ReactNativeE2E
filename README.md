@@ -17,3 +17,32 @@ Here are the steps to set up intergrate Detox on you ReactNative project:
     "e2e:test": "detox test --configuration"    
   }
 ```
+---
+Now you can extend the tests in `e2e` forlder and explore how these tests are run in the CI/CD with [android.yml](.github/workflows/android.yml)
+## Running locally
+1. Make sure you have Android SDK installed
+2. Install the platform tools:
+```bash
+$ sdkmanager --install 'build-tools;33.0.0' platform-tools 'platforms;android-29'
+```
+3. Install the emulator:
+```bash
+$ sdkmanager --install 'system-images;android-29;default;x86_64'
+$ avdmanager create avd --force -n Pixel_API_29_AOSP --abi 'default/x86_64' --package 'system-images;android-29;default;x86_64' --device 'pixel'
+```
+4. Build the app for Android:
+```bash
+$ yarn e2e:build android.emu.debug
+```
+5. Start the emulator (don't close the terminal):
+```bash
+$ $ANDROID_HOME/emulator/emulator -avd Pixel_API_29_AOSP
+```
+6. Run Metro (don't close the terminal):
+```bash
+$ yarn start
+```
+7. Run the tests:
+```bash
+$ yarn e2e:test android.emu.debug
+```
