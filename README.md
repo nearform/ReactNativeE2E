@@ -45,4 +45,4 @@ $ yarn start
 7. Run the tests:
 ```bash
 $ yarn e2e:test android.emu.debug
-```
+``` 
